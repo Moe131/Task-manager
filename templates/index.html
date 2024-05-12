@@ -8,9 +8,12 @@
 <div class="content"> 
     <h1 id="header" > Task Manager</h1>
     <table>
+        {% if tasks|length < 1 %}
+            <h4 style="text-align: center"> There are not tasks! Create one below</h4>
+        {%else%}
         <tr>
             <th>Task</th>
-            <th>Added</th>
+            <th>Date Added</th>
             <th>Actions</th>
         </tr>
         {% for task in tasks %}
@@ -23,7 +26,7 @@
             </td>
         </tr>
         {% endfor %}
-
+        {%endif%}
     </table>
 
     <form action="/", method="POST">
