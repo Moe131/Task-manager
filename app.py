@@ -24,6 +24,8 @@ def index():
  
     if request.method == 'POST':
         task_content = request.form['content']
+        if task_content.isspace() or task_content=="": # Task content can not be empty
+            return redirect('/')
         new_task = Todo(content=task_content)
         try:
             db.session.add(new_task)
