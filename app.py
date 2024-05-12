@@ -14,7 +14,8 @@ class Todo(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
     
- # Create the database, only needs to be run once.
+# Create the database, only needs to be run once.
+#
 #with app.app_context():
 #    db.create_all()
 
@@ -31,7 +32,8 @@ def index():
         except Exception as e:
             return f"{e}"
     else:
-        return render_template('index.html')
+        tasks = Todo.query.order_by(Todo.date_added).all()
+        return render_template('index.html', tasks=tasks)
 
 if __name__ == "__main__":
     app.run(debug=True)
